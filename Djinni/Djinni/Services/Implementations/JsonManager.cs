@@ -35,8 +35,7 @@ namespace Djinni.Services.Implementations
                 foreach (var property in properties)
                 {
                     var propInfo = target.GetType().GetProperty(property.PropertyName);
-                    propInfo?.SetValue(target,
-                        Convert.ChangeType(property.Value, propInfo.PropertyType), null);
+                    propInfo?.SetValue(target,Convert.ChangeType(property.Value, propInfo.PropertyType), null);
                 }
             }
             return target;
