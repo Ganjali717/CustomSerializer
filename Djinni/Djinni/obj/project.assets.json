@@ -2053,11 +2053,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Desktop\\Djinni\\Djinni\\Djinni.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\CustomSerializer\\Djinni\\Djinni\\Djinni.csproj",
       "projectName": "Djinni",
-      "projectPath": "C:\\Users\\User\\Desktop\\Djinni\\Djinni\\Djinni.csproj",
+      "projectPath": "C:\\Users\\User\\Desktop\\CustomSerializer\\Djinni\\Djinni\\Djinni.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Desktop\\Djinni\\Djinni\\obj\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\CustomSerializer\\Djinni\\Djinni\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -27,16 +27,13 @@ namespace Djinni.Services.Implementations
 
         public T DeSerialize<T>(string serializeData, T target) where T : new()
         {
-            var deserializedObjects = Extract.ExtractData(serializeData);
+            var deserializedObjects = Export.ExportData(serializeData);
 
-            foreach (var obj in deserializedObjects)
+            var properties = Export.ExporttValuesFromData(deserializedObjects);
+            foreach (var property in properties)
             {
-                var properties = Extract.ExtractValuesFromData(obj);
-                foreach (var property in properties)
-                {
-                    var propInfo = target.GetType().GetProperty(property.PropertyName);
-                    propInfo?.SetValue(target,Convert.ChangeType(property.Value, propInfo.PropertyType), null);
-                }
+                var propInfo = target.GetType().GetProperty(property.PropertyName);
+                propInfo?.SetValue(target, Convert.ChangeType(property.Value, propInfo.PropertyType), null);
             }
             return target;
         }

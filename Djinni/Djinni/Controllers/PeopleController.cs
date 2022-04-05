@@ -24,7 +24,7 @@ namespace Djinni.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var persons = _context.People.Include(x => x.Address).ToList();
+            var persons = _context.People.Include(x => x.address).ToList();
 
             var stringlist = _manager.CustomSerializer(persons);
 
@@ -32,15 +32,29 @@ namespace Djinni.Controllers
         }
 
         [HttpPost("addperson")]
-        public IActionResult AddPerson(string value)
+        public Task<long> AddPerson(string value)
         {
-            Person person = new Person();
+            PersonPostDto person = new PersonPostDto();
             var obj = _manager.DeSerialize(value, person);
 
-            _context.People.Add(obj);
+            
+            Address address = new Address()
+            {
+                city = obj.City,
+                addressLine = obj.AddressLine,
+            };
+            Person person1 = new Person()
+            {
+                firstName = obj.FirstName,
+                lastName = obj.LastName,
+                address = address,
+            }; 
+            _context.People.Add(person1);
             _context.SaveChanges();
 
-            return Ok(obj);
+            long id = Convert.ToInt64(_context.People.Where(x => x.firstName == person.FirstName).First().Id);
+
+            return Task.FromResult<long>(person1.Id);
         }
     }
 }
