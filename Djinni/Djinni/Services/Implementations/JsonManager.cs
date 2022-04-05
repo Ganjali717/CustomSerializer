@@ -12,13 +12,19 @@ namespace Djinni.Services.Implementations
             var sb = new StringBuilder();
             sb.AppendLine();
             sb.Append("{");
-            List<PropertyInfo> props = new List<PropertyInfo>(value.GetType().GetProperties());
-            foreach (var prop in props)
+            IList<Person> values = value as IList<Person>;
+            foreach (var prop in values)
             {
-                var propValue = prop.GetValue(value, new object[2]);
                 sb.AppendLine();
-                sb.Append(@"" + prop.Name + ":" + propValue + "");
+                sb.Append(@"" + "Firstname:"+ prop.firstName + "");
+                sb.AppendLine();
+                sb.Append(@"" + "LastName:" + prop.lastName + "");
+                sb.AppendLine();
+                sb.Append(@"" + "City:" + prop.address.city + "");
+                sb.AppendLine();
+                sb.Append('\t');
             }
+
             sb.AppendLine();
             sb.Append("}");
             return sb.ToString();

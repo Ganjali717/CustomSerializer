@@ -21,12 +21,28 @@ namespace Djinni.Controllers
             _manager = manger;
         }
 
+        [HttpGet("getbyfilter")]
+        public IActionResult GetByFilter([FromBody]PersonGetDto personGD)
+        {
+            var query = _context.People.Include(x => x.address)
+                                       .Where(x => x.firstName == personGD.FirstName || x.lastName == personGD.LastName || x.address.city == personGD.City)
+                                       .AsQueryable();
+
+            if(query == null) return BadRequest();
+
+            var stringlist = _manager.CustomSerializer(query);
+
+            return Ok(stringlist);
+        }
+
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
             var persons = _context.People.Include(x => x.address).ToList();
+            if (persons == null) return BadRequest();
 
             var stringlist = _manager.CustomSerializer(persons);
+
             return Ok(stringlist);
         }
 
