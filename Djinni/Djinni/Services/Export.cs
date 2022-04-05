@@ -15,18 +15,7 @@ namespace Djinni.Services
         {
             var matched = new List<string>();
             string trimmed = text.Trim();
-            string arrayed = "";
-            string arrayedsecond = "";
-            string splited = "";
-            string secondsplit = "";
-            string thirdremove = "";
-            string fourthsplit = "";
-            string rmvquote = "";
-            string rmvquote2 = "";
-            string removewhitespace = "";
-            string quote = "";
-            string quote2 = "";
-            string finaltrim = "";
+            string arrayed, arrayedsecond, splited, secondsplit, thirdremove, fourthsplit, rmvquote, rmvquote2, removewhitespace, quote, quote2, finaltrim, baku = "";
             var indexStart = text.IndexOf(startString, StringComparison.Ordinal);
             var indexEnd = text.IndexOf(endString, StringComparison.Ordinal);
             if (indexStart != -1 && indexEnd != -1)
